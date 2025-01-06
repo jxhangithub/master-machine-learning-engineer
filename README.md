@@ -1,4 +1,9 @@
 # Master Machine Learning Engineer
+
+<img src="https://m.media-amazon.com/images/I/71-C9YYXUvL._SL1293_.jpg" width="300" alt="Master Machine Learning Engineer Book Cover"/>
+
+📚 **Get the Book**: [Available on Amazon](https://www.amazon.com/dp/B0DNZVTDWZ)
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calmrocks/master-machine-learning-engineer/blob/main/)
 
 This repository contains a collection of Jupyter notebooks for machine learning tasks, designed to be run in Google Colab. Access the repository at [github.com/calmrocks/master-machine-learning-engineer](https://github.com/calmrocks/master-machine-learning-engineer).
