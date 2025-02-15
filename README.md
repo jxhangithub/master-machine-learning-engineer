@@ -143,6 +143,21 @@ You can run these notebooks directly in Google Colab by:
   - Implementation and fine-tuning
   - Applications and use cases
 
+- [`Agent.ipynb`](https://github.com/calmrocks/master-machine-learning-engineer/blob/main/GenAI/Agent.ipynb)
+  - Introduction to AI agents
+  - Building and deploying AI agents
+  - Agent architectures and frameworks
+
+- [`FineTune.ipynb`](https://github.com/calmrocks/master-machine-learning-engineer/blob/main/GenAI/FineTune.ipynb)
+  - Fine-tuning techniques for LLMs
+  - Dataset preparation and preprocessing
+  - Evaluation metrics for fine-tuned models
+
+- [`PromptEngineering.ipynb`](https://github.com/calmrocks/master-machine-learning-engineer/blob/main/GenAI/PromptEngineering.ipynb)
+  - Principles of effective prompt design
+  - Techniques for improving model responses
+  - Best practices and common pitfalls in prompt engineering
+
 ## 🛠️ Prerequisites
 - Google account (for Colab access)
 - Basic understanding of Python
