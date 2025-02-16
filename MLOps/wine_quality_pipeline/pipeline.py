@@ -70,9 +70,11 @@ def create_model_monitor(role, bucket, base_job_prefix, sagemaker_session):
         instance_count=1,
         instance_type="ml.m5.xlarge",
         base_job_name=f"{base_job_prefix}/monitor",
-        data_capture_config=data_capture_config,
-        sagemaker_session=sagemaker_session  # Add this parameter
+        sagemaker_session=sagemaker_session
     )
+
+    # Set the data capture config after creation
+    model_monitor.data_capture_config = data_capture_config
 
     return model_monitor
 
