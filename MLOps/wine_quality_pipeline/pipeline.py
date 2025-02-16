@@ -14,7 +14,7 @@ def create_pipeline(
         bucket,
         pipeline_name,
         base_job_prefix,
-        boto3_session  # Add this parameter
+        boto3_session
 ):
     # Create SageMaker session using the provided boto3 session
     sagemaker_session = sagemaker.Session(boto_session=boto3_session)
