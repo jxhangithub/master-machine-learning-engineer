@@ -61,7 +61,8 @@ def create_model_monitor(role, bucket, base_job_prefix, sagemaker_session):
         destination_s3_uri=f"s3://{bucket}/wine-quality/monitoring",
         capture_options=["REQUEST", "RESPONSE"],
         csv_content_types=["text/csv"],
-        json_content_types=["application/json"]
+        json_content_types=["application/json"],
+        sagemaker_session=sagemaker_session
     )
 
     model_monitor = sagemaker.model_monitor.ModelMonitor(
