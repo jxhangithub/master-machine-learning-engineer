@@ -57,7 +57,7 @@ def create_pipeline(
     # Define training step
     sklearn_estimator = SKLearn(
         entry_point="training.py",
-        source_dir="scripts",
+        source_dir="wine_quality_pipeline/scripts",
         role=role,
         instance_type="ml.m5.xlarge",
         instance_count=1,
