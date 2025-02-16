@@ -1,0 +1,95 @@
+@startuml
+
+title Machine Learning Pipeline
+
+' Define styles
+skinparam package {
+    BorderColor black
+    BorderThickness 2
+    FontSize 14
+}
+
+skinparam rectangle {
+    BorderColor black
+    BorderThickness 2
+    FontSize 12
+}
+
+' Define colors for different stages
+skinparam package {
+    BackgroundColor<<Data>> #FFCDD2
+    BackgroundColor<<Training>> #C8E6C9
+    BackgroundColor<<Deployment>> #FFF9C4
+    BackgroundColor<<Monitoring>> #F8BBD0
+    BackgroundColor<<Retraining>> #B2EBF2
+}
+
+' Define components
+package "Data Processing" <<Data>> {
+    rectangle "Load Data" as LD
+    rectangle "Data Exploration\nEDA" as DE
+    rectangle "Data Cleaning\n& Preprocessing" as DC
+    rectangle "Feature Engineering\n& Selection" as FE
+}
+
+package "Model Training" <<Training>> {
+    rectangle "Data Splitting\nTrain/Test/Val" as DS
+    rectangle "Model Selection\n& Hyperparameters" as MS
+    rectangle "Train Model" as TM
+    rectangle "Model Evaluation\n& Validation" as ME
+}
+
+package "Model Deployment" <<Deployment>> {
+    rectangle "Save Model\n& Artifacts" as SM
+    rectangle "Deploy Model\nto Production" as DM
+    rectangle "API Development" as API
+}
+
+package "Production Monitoring" <<Monitoring>> {
+    rectangle "Monitor Performance" as MP
+    rectangle "Monitor Data Drift" as MDD
+    rectangle "Collect Feedback" as CF
+}
+
+package "Model Maintenance" <<Retraining>> {
+    rectangle "Analyze Performance\nMetrics" as APM
+    rectangle "Retrain Model" as RM
+    rectangle "Version Control" as VC
+}
+
+' Define connections with labels
+LD -right-> DE : Raw Data
+DE -right-> DC : Insights
+DC -right-> FE : Clean Data
+FE -down-> DS : Features
+DS -right-> MS : Split Data
+MS -right-> TM : Parameters
+TM -right-> ME : Model
+ME -down-> SM : Validated\nModel
+SM -right-> DM : Artifacts
+DM -right-> API : Model\nEndpoint
+API -down-> MP : Logs
+MP -right-> MDD : Metrics
+MDD -right-> CF : Alerts
+CF -down-> APM : Feedback
+APM -right-> RM : Decision
+RM -up-> VC : New Model
+VC -up-> SM : Version
+
+' Add notes
+note bottom of DC
+  Handle missing values,
+  outliers, duplicates
+end note
+
+note bottom of ME
+  Accuracy, Precision,
+  Recall, F1-score
+end note
+
+note bottom of MDD
+  Data & Concept Drift
+  Detection
+end note
+
+@enduml
