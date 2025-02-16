@@ -8,6 +8,10 @@ from sagemaker.workflow.properties import PropertyFile
 from sagemaker.model_monitor import DataCaptureConfig
 from sagemaker.model_monitor.dataset_format import DatasetFormat
 from sagemaker.sklearn import SKLearn
+from sagemaker.workflow.steps import CreateModelStep
+from sagemaker.workflow.model_step import ModelStep
+from sagemaker.model import Model
+
 
 def create_pipeline(
         role,
@@ -105,6 +109,19 @@ def create_pipeline(
         code="wine_quality_pipeline/scripts/evaluation.py"
     )
 
+    # Create model step
+    model = Model(
+        image_uri=training_step.properties.AlgorithmSpecification.TrainingImage,
+        model_data=training_step.properties.ModelArtifacts.S3ModelArtifacts,
+        role=role,
+        sagemaker_session=sagemaker_session
+    )
+
+    create_model_step = ModelStep(
+        name="CreateWineQualityModel",
+        step_args=model.create()
+    )
+
     # Create model monitor
     model_monitor = create_model_monitor(role, bucket, base_job_prefix, sagemaker_session)
 
@@ -112,11 +129,11 @@ def create_pipeline(
     pipeline = Pipeline(
         name=pipeline_name,
         parameters=[],
-        steps=[preprocessing_step, training_step, evaluation_step],
+        steps=[preprocessing_step, training_step, evaluation_step, create_model_step],
         sagemaker_session=sagemaker_session
     )
 
-    return pipeline, model_monitorå
+    return pipeline, model_monitor
 
 def create_model_monitor(role, bucket, base_job_prefix, sagemaker_session):
     data_capture_config = DataCaptureConfig(
